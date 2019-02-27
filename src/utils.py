@@ -50,6 +50,10 @@ def imshow(img, title=''):
 
 
 def imsave(img, path):
+    dirname = os.path.dirname(path)
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+        print(f"Made {dirname}")
     im = Image.fromarray(img.cpu().numpy().astype(np.uint8).squeeze())
     im.save(path)
 
