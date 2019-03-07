@@ -1,5 +1,5 @@
 FLIST_DIR="/project/project-mira3/datasets/FreeFromVideoInpainting/file_lists"
-VIDEO_DIR="/tmp2/yaliangchang/Free_Form_Video_Inpainting_with_Gated_Convolution/dataset/test_20181109_rename_num"
+VIDEO_DIR="/project/project-mira3/datasets/FreeFromVideoInpainting/test_20181109_rename_num"
 FLISTS=($(ls -f $FLIST_DIR))
 echo "${FLISTS[@]}"
 source activate edge-connect
