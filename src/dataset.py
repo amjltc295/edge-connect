@@ -68,7 +68,7 @@ class Dataset(torch.utils.data.Dataset):
         img_gray = rgb2gray(img)
 
         # load mask
-        mask = self.load_mask(img, index)
+        mask = 255 - self.load_mask(img, index)
 
         # load edge
         edge = self.load_edge(img_gray, index, mask)
