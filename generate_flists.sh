@@ -1,7 +1,8 @@
 ROOT_MASK_DIR="/project/project-mira3/datasets/FreeFromVideoInpainting/random_masks/test_set"
 OUTPUT_DIR="/project/project-mira3/datasets/FreeFromVideoInpainting/file_lists"
-declare -a types=("object_like" "object_like_middle" "object_like_middle_noBoarder" "object_like_noBoarder" "rand_curve" "rand_curve_noBoarder")
-declare -a percentages=("5" "15" "25" "35" "45" "55" "uniform")
+mkdir $OUTPUT_DIR
+declare -a types=("object_like_middle" "object_like_middle_noBoarder" "rand_curve" "rand_curve_noBoarder")
+declare -a percentages=("5" "15" "25" "35" "45" "55" "65" "uniform")
 for t in "${types[@]}"
 do
     for p in "${percentages[@]}"
