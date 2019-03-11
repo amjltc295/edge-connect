@@ -24,7 +24,7 @@ def main(mode=None):
 
 
     # init device
-    if torch.cuda.is_available():
+    if torch.cuda.is_available() or True:
         print("Using GPU")
         config.DEVICE = torch.device("cuda")
         torch.backends.cudnn.benchmark = True   # cudnn auto-tuner
@@ -85,6 +85,7 @@ def load_config(mode=None):
         parser.add_argument('--mask', type=str, help='path to the masks directory or a mask file')
         parser.add_argument('--edge', type=str, help='path to the edges directory or an edge file')
         parser.add_argument('--output', type=str, help='path to the output directory')
+        parser.add_argument('--gpu', type=int, help='GPU ID to use', nargs='+')
 
     args = parser.parse_args()
     config_path = os.path.join(args.path, 'config.yml')
@@ -123,6 +124,9 @@ def load_config(mode=None):
 
         if args.output is not None:
             config.RESULTS = args.output
+
+        if args.gpu is not None:
+            config.GPU = args.gpu
 
     # eval mode
     elif mode == 3:
