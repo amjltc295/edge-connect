@@ -9,12 +9,17 @@ args = parser.parse_args()
 
 ext = {'.jpg', '.png'}
 
+max_len = 32
 images = []
-for root, dirs, files in os.walk(args.path):
-    print('loading ' + root)
-    for file in files:
+dirs = os.listdir(args.path)
+for dirname in sorted(dirs):
+    print('loading ' + dirname)
+    dirname = os.path.join(args.path, dirname)
+    files = os.listdir(dirname)
+    for file in sorted(files)[:max_len]:
+        print(file)
         if os.path.splitext(file)[1] in ext:
-            images.append(os.path.join(root, file))
+            images.append(os.path.join(dirname, file))
 
 images = sorted(images)
 np.savetxt(args.output, images, fmt='%s')

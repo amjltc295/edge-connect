@@ -302,11 +302,9 @@ class EdgeConnect():
             batch_size=1,
         )
 
-        index = 0
-        for items in test_loader:
+        for index, items in enumerate(test_loader):
             name = self.test_dataset.load_name(index)
             images, images_gray, edges, masks = self.cuda(*items)
-            index += 1
 
             # edge model
             if model == 1:
@@ -325,7 +323,14 @@ class EdgeConnect():
                 outputs_merged = (outputs * masks) + (images * (1 - masks))
 
             output = self.postprocess(outputs_merged)[0]
-            path = os.path.join(self.results_path, name)
+            output_dir = os.path.join(
+                self.results_path,
+                self.test_dataset.load_dir(index)
+            )
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            path = os.path.join(output_dir, name)
+            print(f"{index} {name} saving to {path}")
             print(index, name)
 
             imsave(output, path)
@@ -383,7 +388,7 @@ class EdgeConnect():
             self.postprocess(inputs),
             self.postprocess(edges),
             self.postprocess(outputs),
-            self.postprocess(outputs_merged), 
+            self.postprocess(outputs_merged),
             img_per_row = image_per_row
         )
 

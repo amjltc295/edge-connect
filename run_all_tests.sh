@@ -7,17 +7,17 @@ for f in "${FLISTS[@]}"
 do
     echo """ Doing
     python test.py \
-     --checkpoints ./checkpoints/celeba \
+     --checkpoints ./checkpoints/celeba_ft \
      --input $VIDEO_DIR \
      --mask $FLIST_DIR/$f \
      --output ./outputs_faceforensics/edge_connect_FaceForensics_test_${f}_results
 
     """
     python test.py \
-     --checkpoints ./checkpoints/celeba \
+     --checkpoints ./checkpoints/face_from_scratch \
      --input $VIDEO_DIR \
      --mask $FLIST_DIR/$f \
-     --output ./outputs_faceforensics/edge_connect_FaceForensics_test_${f}_results \
+     --output ./outputs_faceforensics_from_scratch/edge_connect_from_scratch_FaceForensics_${f}_results \
      --gpu 1
 
 done

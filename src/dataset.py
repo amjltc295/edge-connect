@@ -47,7 +47,11 @@ class Dataset(torch.utils.data.Dataset):
 
     def load_name(self, index):
         name = self.data[index]
-        return name[-15:]
+        return name.split('/')[-1]
+
+    def load_dir(self, index):
+        name = self.data[index]
+        return name.split('/')[-2]
 
     def load_item(self, index):
 
